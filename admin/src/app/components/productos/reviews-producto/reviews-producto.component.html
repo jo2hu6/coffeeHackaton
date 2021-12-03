@@ -1,0 +1,78 @@
+<app-sidebar></app-sidebar>
+
+<div class="border-bottom pt-5 mt-2 mb-5">
+    <h1 class="mt-2 mt-md-4 mb-3 pt-5">Reseñas</h1>
+    <div class="d-flex flex-wrap flex-md-nowrap justify-content-between">
+        <p class="text-muted">Este módulo lista todas las reseñas de un producto.</p>
+    </div>
+</div>
+
+<div class="card box-shadow-sm" *ngIf="producto == undefined">
+    <div class="card-body">
+        <h3 class="text-center">No se encontró el producto</h3>
+        <div class="row">
+            <div class="col-3 mx-auto">
+                <img src="assets/img/error.png" alt="" style="width: 100%;">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card box-shadow-sm" *ngIf="producto">
+    <div class="card-header">
+        <h5 style="margin-bottom: 0px;float: left;width: 70%;">Reseñas de {{producto.titulo}}</h5>
+    </div>
+    <div class="card-body">
+        <div class="row mb-5">
+            <div class="col-8">
+                <div class="row">
+                    <div class="col-md-4" style="padding-right: 0;">
+                        <img [src]="url+'obtener_portada/'+producto.portada" class="img-thumbnail rounded-0" alt="Square image">
+                    </div>
+                    <div class="col-md-8" style="padding: 4%;">
+                        <div class="card" style="height: 100% !important; background-color: #f5eeee;">
+                            <div class="card-body">
+                                <h3 class="card-product-title text-truncate mb-2">
+                                    <a class="nav-link mb-3">{{producto.titulo}}</a>
+                                    <p class="text-muted">{{producto.descripcion}}</p>
+                                    <div class="d-flex align-items-center">
+                                        <span class="h5 d-inline-block mb-0 text-danger">S/ {{producto.precio}}</span>
+                                    </div>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-4 pb-4 border-bottom" *ngIf="reviews.length >= 1">
+            <div class="row" *ngFor="let item of reviews | slice:(page-1)*pageSize : (page-1) * pageSize + pageSize">
+                <div class="col-md-3 col-sm-4 mb-sm-0 mb-3">
+                    <h5 class="mb-2 fs-lg">{{item.cliente.nombres}} {{item.cliente.apellidos}}</h5>
+                    <span class="d-block mb-3 fs-sm text-muted">{{item.createdAt|date}}</span>
+                </div>
+                <div class="col">
+                    <p class="mb-3">
+                        <a class="me-1 fw-bold text-decoration-none" href="#">{{item.cliente.email}}</a>
+                    </p>
+                    <p class="mb-3">
+                        {{item.review}}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="reviews.length == 0">
+            <div class="col-12 text-center">
+                No existen reseñas del producto.
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="reviews.length"></ngb-pagination>
+        <button class="btn btn-warning" [routerLink]="['/panel/productos']" routerLinkActive="router-link-active">
+            Regresar
+        </button>
+    </div>
+</div>

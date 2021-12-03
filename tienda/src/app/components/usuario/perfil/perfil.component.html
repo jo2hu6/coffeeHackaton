@@ -1,0 +1,87 @@
+<app-nav></app-nav>
+
+<main class="cs-page-wrapper">
+
+    <nav class="bg-secondary mb-3" aria-label="breadcrumb">
+        <div class="container">
+            <ol class="breadcrumb breadcrumb-alt mb-0">
+                <li class="breadcrumb-item">
+                    <a [routerLink]="['/']"><i class="cxi-home"></i></a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Mi perfil</li>
+            </ol>
+        </div>
+    </nav>
+
+    <section class="container pt-3 pt-lg-4 pb-5 pb-lg-6">
+        <div class="row pb-2 pb-lg-0">
+
+            <!-- Account menu (sticky sidebar) -->
+            <aside class="col-xl-3 col-lg-4 pb-3 mb-4 mb-lg-0">
+                <app-sidebar></app-sidebar>
+            </aside>
+
+            <!-- Content -->
+            <div class="col-lg-8 ml-auto">
+                <div class="d-flex align-items-center justify-content-between mb-4 pb-1 pb-sm-3">
+                    <h1 class="h2 mb-0">Mi perfil</h1>
+                </div>
+                <form #actualizarForm="ngForm" (ngSubmit)="actualizar(actualizarForm)">
+                    <div class="row pb-3">
+                        <div class="col-sm-6 form-group">
+                            <label for="ac-fn">Nombres</label>
+                            <input type="text" class="form-control form-control-lg" name="nombres" [(ngModel)]="cliente.nombres" placeholder="Nombres" required>
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <label for="ac-fn">Apellidos</label>
+                            <input type="text" class="form-control form-control-lg" name="apellidos" [(ngModel)]="cliente.apellidos" placeholder="Apellidos" required>
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <label for="ac-email">Correo electrónico</label>
+                            <input type="email" class="form-control form-control-lg" placeholder="example@hotmail.com" required value="{{cliente.email}}" readonly>
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <label for="ac-phone">Contraseña</label>
+                            <input type="password" class="form-control form-control-lg" placeholder="Contraseña" name="password" id="input_password">
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <label for="ac-email">Teléfono</label>
+                            <input type="number" class="form-control form-control-lg" placeholder="976548793" name="telefono" [(ngModel)]="cliente.telefono" required>
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <label for="ac-email">Fecha de nacimiento</label>
+                            <input type="date" class="form-control form-control-lg" name="f_nacimiento" [(ngModel)]="cliente.f_nacimiento" required>
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <label for="ac-email">DNI</label>
+                            <input type="number" class="form-control form-control-lg" placeholder="75184963" name="dni" [(ngModel)]="cliente.dni" required>
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <label for="ac-country">Género</label>
+                            <select id="ac-country" class="custom-select custom-select-lg" name="genero" [(ngModel)]="cliente.genero">
+                                <option value="" disabled selected>Seleccionar</option>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Femenino">Femenino</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <label for="ac-country">País</label>
+                            <select id="ac-country" class="custom-select custom-select-lg" name="pais" [(ngModel)]="cliente.pais">
+                                <option value="" disabled selected>Seleccionar</option>
+                                <option value="Argentina">Argentina</option>
+                                <option value="Colombia">Colombia</option>
+                                <option value="Bolivia">Bolivia</option>
+                                <option value="Ecuador">Ecuador</option>
+                                <option value="Perú">Perú</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg">&nbsp;Guardar cambios&nbsp;</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<app-footer></app-footer>

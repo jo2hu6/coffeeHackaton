@@ -1,0 +1,12 @@
+[{
+        "titulo": "Envío Estándar",
+        "tiempo": "1 a 2 horas.",
+        "precio": 10
+    },
+
+    {
+        "titulo": "Recojo en Tienda",
+        "tiempo": "Disponible ahora mismo.",
+        "precio": 0
+    }
+]
